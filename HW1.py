@@ -70,6 +70,8 @@ class Node:
     def preOrder(self, preOrderList=None):  #create a new list if not given and recursively pass the list to each child node to append
         if preOrderList is None:
             preOrderList = []
+        if self is None:
+            return preOrderList
         preOrderList.append(self.name)              #append root
         if(self.left!=None):                        #stopping case
             Node.preOrder(self.left, preOrderList)  #traverse left
@@ -80,6 +82,8 @@ class Node:
     def inOrder(self, inOrderList=None):
         if inOrderList is None:
             inOrderList=[]
+        if self is None:
+            return inOrderList
         if(self.left!=None):
             Node.inOrder(self.left, inOrderList)
         inOrderList.append(self.name)
@@ -90,6 +94,8 @@ class Node:
     def postOrder(self, postOrderList=None):
         if postOrderList is None:
             postOrderList = []
+        if self is None:
+            return postOrderList
         if(self.left!=None):
             Node.postOrder(self.left, postOrderList)
         if(self.right!=None):
@@ -98,6 +104,8 @@ class Node:
         return postOrderList
 
     def sumTree(self, sum=0):                   #use traversal function to create the list of nodes and sum them
+        if self is None:
+            return 0
         for i in self.postOrder():
             sum=sum+i
         return sum
@@ -113,7 +121,7 @@ class Node:
 #print(isBalanced('{[(])}'))
 # print(isBalanced('{{[[(())]]}}'))
 # print(isBalanced('{(())]]}}'))
-# print(isBalanced('{{[[(())]'))
+# print(isBalanced(''))
 #
 #root = Node(2, Node(1,Node(6), Node(3)), Node(3, None, Node(9)))
 #print(root.preOrder())
@@ -122,6 +130,10 @@ class Node:
 #print(root.sumTree())
 #
 # root=Node(1,Node(2,	Node(3)),Node(4,None,(Node(5,None,Node(6,None,Node(7))))))
+# print(Node.preOrder(None))
+# print(Node.inOrder(None))
+# print(Node.postOrder(None))
+# print(Node.sumTree(None))
 # print(root.preOrder())
 # print(root.inOrder())
 # print(root.postOrder())
