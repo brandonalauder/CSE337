@@ -3,32 +3,35 @@
 #Problem 1
 
 def isValid(input):
+    if isEqual(input):                          #check initial case
+        return 'YES'
+    for i in range(len(input)):                 #loop through removing a character and checking
+        newString = input[0:i]+input[(i+1):]
+        if isEqual(newString):
+            return 'YES'
+    return 'NO'
+
+
+
+def isEqual(s):
     dict = {}                              #Put characters into a dictionary to count each character then put counted number of characters into a list
-    for char in input:
+    for char in s:
         if char in dict:
             dict[char] = dict[char]+1
         else:
             dict[char] = 1
     values = [v for k,v in dict.items()]
-    print(values)
 
-    for i in values:                    #Check if all values are equal and print yes if they are
+    for i in values:                    #Check if all values are equal and return true if they are else return false
         for n in values:
             if i!=n:
                 break
         else:
             continue
-        break
+        return False
     else:
-        return 'YES'
+        return True
 
-    for index1, i in enumerate(values):         #Check if subtracting 1 from a value would make them all equal and print yes if it would or else print no
-        for index2, j in enumerate(values):
-            if ((i-1)!=j) & (index1!=index2):   #exclude self checking
-                break
-        else:
-            return 'YES'
-    return 'NO'
 
 #Problem 2
 
@@ -99,25 +102,27 @@ class Node:
             sum=sum+i
         return sum
 
-
-print(isValid('aabbcd'))
-print(isValid('aabbcdddeefghi'))
-print(isValid('abcdefghhgfedecba'))
-
-print(isBalanced('{[()]}'))
-print(isBalanced('{[(])}'))
-print(isBalanced('{{[[(())]]}}'))
-print(isBalanced('{(())]]}}'))
-print(isBalanced('{{[[(())]'))
-
-root = Node(2, Node(1,Node(6), Node(3)), Node(3, None, Node(9)))
-print(root.preOrder())
-print(root.inOrder())
-print(root.postOrder())
-print(root.sumTree())
-
-root=Node(1,Node(2,	Node(3)),Node(4,None,(Node(5,None,Node(6,None,Node(7))))))
-print(root.preOrder())
-print(root.inOrder())
-print(root.postOrder())
-print(root.sumTree())
+#tests
+# print(isValid('aabbcd'))
+# print(isValid('aabbcdddeefghi'))
+# print(isValid('abcdefghhgfedecba'))
+# print(isValid('accc'))
+# print(isValid('aabbccc'))
+#
+# print(isBalanced('{[()]}'))
+#print(isBalanced('{[(])}'))
+# print(isBalanced('{{[[(())]]}}'))
+# print(isBalanced('{(())]]}}'))
+# print(isBalanced('{{[[(())]'))
+#
+#root = Node(2, Node(1,Node(6), Node(3)), Node(3, None, Node(9)))
+#print(root.preOrder())
+# print(root.inOrder())
+# print(root.postOrder())
+#print(root.sumTree())
+#
+# root=Node(1,Node(2,	Node(3)),Node(4,None,(Node(5,None,Node(6,None,Node(7))))))
+# print(root.preOrder())
+# print(root.inOrder())
+# print(root.postOrder())
+# print(root.sumTree())
