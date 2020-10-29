@@ -22,10 +22,6 @@ def createNotes(title, link):   #Searches page for cautionaty notes and writes a
 
 
 url = 'https://developer.android.com/reference/android/app/package-summary'
-# path = 'C:/Users/Brandon/Documents/CSE337/CSE337/outFiles'                  #Change path to directory in which the out files should go
-
-# os.makedirs(path, exist_ok=True)
-
 current_directory = os.getcwd()
 path = os.path.join(current_directory, 'outFiles')
 if not os.path.exists(path):
